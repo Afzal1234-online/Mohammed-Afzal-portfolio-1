@@ -6,19 +6,19 @@
     <title>Mohammed Afzal 3D Artist Portfolio</title>
     <style>
         /* Importing Google Font for titles */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap'); /* Poppins font for titles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
         /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1e2a47; /* Single dark blue color */
+            background-color: #1e2a47;
             color: #f1f1f1;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
 
-        /* Add this for Stars Effect */
+        /* Stars Effect */
         .stars {
             position: fixed;
             top: 0;
@@ -31,54 +31,49 @@
             animation: move-stars 60s linear infinite;
         }
 
-        /* Stars Animation */
         @keyframes move-stars {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-100%);
-            }
+            from { transform: translateY(0); }
+            to { transform: translateY(-100%); }
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #003566, #00509e); /* Darker night tones */
+            background: linear-gradient(135deg, #003566, #00509e);
             text-align: center;
             padding: 40px 20px;
-            border-bottom-left-radius: 30px; /* Smooth curve */
+            border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
         }
 
         h1 {
             font-size: 2.5em;
             margin: 0;
-            color: #ffffff; /* White text for contrast */
+            color: #ffffff;
         }
 
         p {
             margin: 10px 0;
-            color: #d6e4f0; /* Softer white text */
+            color: #d6e4f0;
         }
 
         section {
             padding: 40px 20px;
             text-align: center;
-            opacity: 0; /* Initially invisible */
-            transform: translateY(50px); /* Slide from below */
+            opacity: 0;
+            transform: translateY(50px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         section.visible {
-            opacity: 1; /* Make it visible */
-            transform: translateY(0); /* Slide it to the top */
+            opacity: 1;
+            transform: translateY(0);
         }
 
         section h2 {
-            font-family: 'Poppins', sans-serif; /* Apply Poppins font to titles */
+            font-family: 'Poppins', sans-serif;
             font-size: 2.3em;
             margin-bottom: 20px;
-            color: #00b4d8; /* Bright cyan accent */
+            color: #00b4d8;
         }
 
         /* Portfolio Section */
@@ -90,10 +85,10 @@
         }
 
         .portfolio-item {
-            background: #003566; /* Dark blue background */
+            background: #003566;
             padding: 20px;
-            border-radius: 15px; /* Smooth edges */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
@@ -102,7 +97,7 @@
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
         }
 
-        /* New Video Container Styles */
+        /* Video Container Styles */
         .video-container {
             position: relative;
             width: 100%;
@@ -143,7 +138,7 @@
 
         .portfolio-item p {
             margin-top: 10px;
-            color: #a9d6e5; /* Soft pastel text color */
+            color: #a9d6e5;
         }
 
         .portfolio-links {
@@ -154,16 +149,38 @@
             display: inline-block;
             margin: 10px;
             padding: 10px 20px;
-            background: #00b4d8; /* Cyan button */
+            background: #00b4d8;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Special highlight for Presentations link */
+        .presentation-link {
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.7);
+            position: relative;
+        }
+
+        .presentation-link::after {
+            content: "★";
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            font-size: 16px;
+            color: gold;
         }
 
         .portfolio-link:hover {
             transform: translateY(-5px);
-            box-shadow: 0px 4px 20px rgba(0, 180, 216, 0.4); /* Cyan hover effect */
+            box-shadow: 0px 4px 20px rgba(0, 180, 216, 0.4);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
         }
 
         /* Software Skills Section */
@@ -177,20 +194,20 @@
 
         .skill-item {
             text-align: center;
-            background: #00509e; /* Darker blue for skills */
-            padding: 15px 20px; /* Slightly larger padding */
-            border-radius: 10px; /* Smooth edges */
+            background: #00509e;
+            padding: 15px 20px;
+            border-radius: 10px;
             font-size: 1.1em;
-            color: #caf0f8; /* Light cyan text */
+            color: #caf0f8;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            max-width: fit-content; /* Resize box dynamically based on text length */
+            max-width: fit-content;
             width: auto;
         }
 
         .skill-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0px 6px 15px rgba(0, 80, 158, 0.5); /* Hover effect */
+            box-shadow: 0px 6px 15px rgba(0, 80, 158, 0.5);
         }
 
         /* Pipeline and Hobbies Section */
@@ -205,20 +222,9 @@
             color: #a9d6e5;
         }
 
-        /* Change color for email and contact number */
-        .email, .contact-number {
-            color: #f1f1f1; /* Light color for email and contact number */
-            text-decoration: none; /* Remove underline */
-        }
-
-        /* Add hover effect for email and contact number */
-        .email:hover, .contact-number:hover {
-            color: #00b4d8; /* Cyan color on hover */
-        }
-
         /* Contact Section */
         .contact-link {
-            color: #00b4d8; /* Bright cyan color for email and phone */
+            color: #00b4d8;
             text-decoration: none;
             font-weight: bold;
         }
@@ -249,13 +255,33 @@
 
         /* Footer */
         footer {
-            background: #00509e; /* Darker footer color */
+            background: #00509e;
             color: #ffffff;
             text-align: center;
             padding: 20px;
             margin-top: 20px;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #00b4d8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
     </style>
 </head>
@@ -351,13 +377,13 @@
                     >
                     <button class="play-button">▶</button>
                 </div>
-                <p>Project 6: 3D stall</p>
+                <p>Project 6: 3D Stall</p>
             </div>
         </div>
         <div class="portfolio-links">
             <a href="https://www.artstation.com/artwork/y4bPLJ" target="_blank" rel="noopener noreferrer" class="portfolio-link">View More on ArtStation</a>
             <a href="https://www.linkedin.com/in/mohammed-afzal-37048b332" target="_blank" rel="noopener noreferrer" class="portfolio-link">Connect with me on LinkedIn</a>
-            <a href="https://in.docworkspace.com/d/sIEOGvp6wAoSrvMAG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link">View My Presentations</a>
+            <a href="https://in.docworkspace.com/d/sIEOGvp6wAoSrvMAG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">View My Presentations</a>
         </div>
     </section>
 
@@ -416,28 +442,68 @@
     </footer>
 
     <button id="back-to-top">↑</button>
+    <div class="notification-badge" id="notification">Sending notification...</div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("Welcome to Afzal's 3D Artist Portfolio!");
+        // Telegram Bot Configuration
+        const TELEGRAM_BOT_TOKEN = '7525466128:AAEiC6124Ne7RK1UwIZHC9fegh5LPFmihNw';
+        const TELEGRAM_CHAT_ID = '7076125469';
+        
+        // Function to send Telegram notification
+        async function sendTelegramNotification(action) {
+            const notification = document.getElementById('notification');
+            notification.textContent = `scroll upward${action}!`;
+            notification.style.display = 'block';
             
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: `🔔 New Portfolio Interaction:\n\nVisitor ${action} at ${new Date().toLocaleString()}\n\nFrom: ${window.location.href}`,
+                    }),
+                });
+                
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Telegram notification failed:', error);
+                notification.textContent = "Notification failed";
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Visitor notification
+        window.addEventListener('load', () => {
+            sendTelegramNotification('to see Mohammed Afzal works');
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
             // IntersectionObserver to detect when section is in view
             const sections = document.querySelectorAll("section");
             const options = {
                 root: null,
-                threshold: 0.3 // Trigger when 30% of the section is visible
+                threshold: 0.3
             };
             
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add("visible"); // Add class when section is visible
+                        entry.target.classList.add("visible");
                     }
                 });
             }, options);
             
             sections.forEach(section => {
-                observer.observe(section); // Observe each section
+                observer.observe(section);
             });
             
             // Back-to-top button functionality
@@ -445,13 +511,12 @@
             
             window.addEventListener("scroll", () => {
                 if (window.scrollY > 300) {
-                    backToTopButton.style.display = "block"; // Show button after scrolling down
+                    backToTopButton.style.display = "block";
                 } else {
-                    backToTopButton.style.display = "none"; // Hide button if near top
+                    backToTopButton.style.display = "none";
                 }
             });
             
-            // Smooth scroll to the top
             backToTopButton.addEventListener("click", () => {
                 window.scrollTo({
                     top: 0,
@@ -459,13 +524,15 @@
                 });
             });
 
-            // Lazy-load YouTube videos when clicked
+            // Enhanced video click tracking
             document.querySelectorAll('.video-container').forEach(container => {
                 const thumbnail = container.querySelector('.video-thumbnail');
                 const playButton = container.querySelector('.play-button');
                 
                 playButton.addEventListener('click', () => {
                     const videoId = thumbnail.dataset.videoId;
+                    const projectTitle = container.closest('.portfolio-item').querySelector('p').textContent;
+                    
                     container.innerHTML = `
                         <iframe 
                             src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
@@ -475,6 +542,37 @@
                             allowfullscreen
                         ></iframe>
                     `;
+                    
+                    sendTelegramNotification(`played your video: ${projectTitle}`);
+                    
+                    // Highlight presentation link after video play
+                    const presentationLink = document.querySelector('.presentation-link');
+                    presentationLink.style.animation = 'pulse 1s infinite alternate';
+                    presentationLink.style.transform = 'scale(1.05)';
+                });
+            });
+
+            // Link click tracking
+            document.querySelectorAll('.portfolio-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const linkText = e.target.textContent.trim();
+                    sendTelegramNotification(`clicked your ${linkText} link`);
+                    
+                    if (link.classList.contains('presentation-link')) {
+                        // Extra emphasis when presentations link is clicked
+                        link.style.boxShadow = '0 0 20px rgba(0, 180, 216, 0.9)';
+                        setTimeout(() => {
+                            link.style.boxShadow = '0 0 15px rgba(0, 180, 216, 0.7)';
+                        }, 500);
+                    }
+                });
+            });
+
+            // Contact link tracking
+            document.querySelectorAll('.contact-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const action = e.target.textContent.includes('@') ? 'viewed your email' : 'viewed your phone number';
+                    sendTelegramNotification(action);
                 });
             });
         });
