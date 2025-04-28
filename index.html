@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -102,11 +102,43 @@
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .portfolio-item iframe {
+        /* New Video Container Styles */
+        .video-container {
+            position: relative;
             width: 100%;
-            height: 200px;
-            border: none;
+            aspect-ratio: 16/9;
             border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 180, 216, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(0, 180, 216, 0.9);
         }
 
         .portfolio-item p {
@@ -244,28 +276,82 @@
         <h2>Portfolio Showcase</h2>
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <iframe src="https://www.youtube.com/embed/GxHF8o9L38Y" title="Stunning CGI Motion Graphics Animation" allowfullscreen></iframe>
+                <div class="video-container">
+                    <img 
+                        src="https://img.youtube.com/vi/GxHF8o9L38Y/mqdefault.jpg" 
+                        alt="Video preview" 
+                        class="video-thumbnail"
+                        data-video-id="GxHF8o9L38Y"
+                        loading="lazy"
+                    >
+                    <button class="play-button">▶</button>
+                </div>
                 <p>Project 1: Awesome Composition with 3D Asset and Environment</p>
             </div>
             <div class="portfolio-item">
-                <iframe src="https://www.youtube.com/embed/HJD_oczYEpk" title="Awesome Composition with 3D Asset and Environment" allowfullscreen></iframe>
+                <div class="video-container">
+                    <img 
+                        src="https://img.youtube.com/vi/HJD_oczYEpk/mqdefault.jpg" 
+                        alt="Video preview" 
+                        class="video-thumbnail"
+                        data-video-id="HJD_oczYEpk"
+                        loading="lazy"
+                    >
+                    <button class="play-button">▶</button>
+                </div>
                 <p>Project 2: Stunning CGI Motion Graphics Animation</p>
             </div>
             <div class="portfolio-item">
-                <iframe src="https://www.youtube.com/embed/YnzwXwICXF0" title="Dynamic 3D Modeling" allowfullscreen></iframe>
+                <div class="video-container">
+                    <img 
+                        src="https://img.youtube.com/vi/YnzwXwICXF0/mqdefault.jpg" 
+                        alt="Video preview" 
+                        class="video-thumbnail"
+                        data-video-id="YnzwXwICXF0"
+                        loading="lazy"
+                    >
+                    <button class="play-button">▶</button>
+                </div>
                 <p>Project 3: Dynamic 3D Modeling</p>
             </div>
             <div class="portfolio-item">
-                <iframe src="https://www.youtube.com/embed/G8kqL-acRyA" title="New Project 4" allowfullscreen></iframe>
+                <div class="video-container">
+                    <img 
+                        src="https://img.youtube.com/vi/G8kqL-acRyA/mqdefault.jpg" 
+                        alt="Video preview" 
+                        class="video-thumbnail"
+                        data-video-id="G8kqL-acRyA"
+                        loading="lazy"
+                    >
+                    <button class="play-button">▶</button>
+                </div>
                 <p>Project 4: New CGI Animation</p>
             </div>
             <div class="portfolio-item">
-                <iframe src="https://www.youtube.com/embed/St2UsankAqM" title="New Project 5" allowfullscreen></iframe>
+                <div class="video-container">
+                    <img 
+                        src="https://img.youtube.com/vi/St2UsankAqM/mqdefault.jpg" 
+                        alt="Video preview" 
+                        class="video-thumbnail"
+                        data-video-id="St2UsankAqM"
+                        loading="lazy"
+                    >
+                    <button class="play-button">▶</button>
+                </div>
                 <p>Project 5: Latest 3D Work</p>
             </div>
             <div class="portfolio-item">
-                <iframe src="https://www.youtube.com/embed/aqUkuVnHtOY" title="New Project 6" allowfullscreen></iframe>
-                <p>Project 6: 3D Animation Showcase</p>
+                <div class="video-container">
+                    <img 
+                        src="https://img.youtube.com/vi/aqUkuVnHtOY/mqdefault.jpg" 
+                        alt="Video preview" 
+                        class="video-thumbnail"
+                        data-video-id="aqUkuVnHtOY"
+                        loading="lazy"
+                    >
+                    <button class="play-button">▶</button>
+                </div>
+                <p>Project 6: 3D stall</p>
             </div>
         </div>
         <div class="portfolio-links">
@@ -370,6 +456,25 @@
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"
+                });
+            });
+
+            // Lazy-load YouTube videos when clicked
+            document.querySelectorAll('.video-container').forEach(container => {
+                const thumbnail = container.querySelector('.video-thumbnail');
+                const playButton = container.querySelector('.play-button');
+                
+                playButton.addEventListener('click', () => {
+                    const videoId = thumbnail.dataset.videoId;
+                    container.innerHTML = `
+                        <iframe 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                        ></iframe>
+                    `;
                 });
             });
         });
