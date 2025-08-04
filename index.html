@@ -3,740 +3,776 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed Afzal - 3D Event Designer</title>
+    <title>Mohammed Afzal - 3D Event & Anamorphic Artist</title>
     <style>
-        /* Importing Google Font for titles */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+        /* --- Google Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300;400;700&display=swap');
 
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1e2a47;
-            color: #f1f1f1;
-            overflow-x: hidden;
+        /* --- CSS Variables (Theme) --- */
+        :root {
+            --primary-font: 'Roboto', sans-serif;
+            --title-font: 'Orbitron', sans-serif;
+            --bg-color: #0a0f1e;
+            --primary-color: #1a2a47;
+            --secondary-color: #0d1a33;
+            --accent-color: #00e5ff;
+            --text-color: #e0e0e0;
+            --light-text-color: #a9d6e5;
         }
 
-        /* Stars Effect */
-        .stars {
+        /* --- General & Body Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* --- Animated Stars Background --- */
+        .stars-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 200%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/6/65/Starry_sky.jpg');
-            background-size: cover;
+            height: 100%;
             z-index: -1;
-            animation: move-stars 60s linear infinite;
+            background-image:
+                radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 150px 120px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 200px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 160px 240px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 250px 250px;
+            animation: twinkle 10s linear infinite;
         }
 
-        @keyframes move-stars {
-            from { transform: translateY(0); }
-            to { transform: translateY(-100%); }
+        @keyframes twinkle {
+            from { background-position: 0 0; }
+            to { background-position: -500px 500px; }
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #003566, #00509e);
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin: 0;
-            color: #ffffff;
-        }
-
-        p {
-            margin: 10px 0;
-            color: #d6e4f0;
-        }
-
-        section {
-            padding: 40px 20px;
+        /* --- Reusable Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
             text-align: center;
         }
 
-        section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.3em;
-            margin-bottom: 20px;
-            color: #00b4d8;
+        /* --- Fade-in on Scroll Animation --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Portfolio Section */
+        /* --- Header / Hero Section --- */
+        header.hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(rgba(10, 15, 30, 0.7), rgba(10, 15, 30, 1));
+        }
+
+        header.hero h1 {
+            font-family: var(--title-font);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        header.hero .subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--text-color);
+            font-weight: 300;
+        }
+        
+        header.hero .typing-text {
+            color: var(--accent-color);
+            border-right: 3px solid var(--accent-color);
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-color); }
+        }
+
+        /* --- Section Titles --- */
+        h2 {
+            font-family: var(--title-font);
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            margin-bottom: 40px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .section-intro {
+            max-width: 800px;
+            margin: -20px auto 40px;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            color: var(--light-text-color);
+        }
+
+        /* --- Portfolio Section --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            padding: 20px;
         }
 
         .portfolio-item {
-            background: #003566;
-            padding: 20px;
+            background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 229, 255, 0.2);
         }
 
-        /* Video Container Styles */
-        .video-container {
-            position: relative;
+        .portfolio-thumbnail {
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            border-radius: 10px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-thumbnail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
+            display: block;
         }
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 180, 216, 0.7);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
-            z-index: 2;
+        .portfolio-item-content {
+            padding: 20px;
         }
 
-        .play-button:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            background: rgba(0, 180, 216, 0.9);
+        .portfolio-item-content h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-item-content p {
+            color: var(--light-text-color);
+            font-size: 0.9rem;
         }
 
-        .portfolio-item p {
-            margin-top: 10px;
-            color: #a9d6e5;
-        }
-
+        /* --- Portfolio Links --- */
         .portfolio-links {
-            margin-top: 20px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .portfolio-link {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background: #00b4d8;
-            color: white;
+            padding: 12px 25px;
+            background: transparent;
+            color: var(--accent-color);
             text-decoration: none;
-            border-radius: 5px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 50px;
+            border: 2px solid var(--accent-color);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .portfolio-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--accent-color);
         }
 
         .presentation-link {
             animation: pulse 2s infinite;
-            position: relative;
-        }
-
-        .presentation-link::after {
-            content: "★";
-            position: absolute;
-            right: -10px;
-            top: -10px;
-            font-size: 16px;
-            color: gold;
-        }
-
-        .portfolio-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 4px 20px rgba(0, 180, 216, 0.4);
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(0, 229, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
         }
 
-        /* Software Skills Section */
+        /* --- Skills Section --- */
         .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            justify-items: center;
-            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .skill-item {
-            text-align: center;
-            background: #00509e;
-            padding: 15px 20px;
+            background: var(--primary-color);
             border-radius: 10px;
-            font-size: 1.1em;
-            color: #caf0f8;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            max-width: fit-content;
-            width: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 130px;
+            height: 120px;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 15px rgba(0, 80, 158, 0.5);
+            transform: translateY(-8px);
+            background: var(--secondary-color);
         }
 
-        /* Pipeline and Hobbies Section */
-        .pipeline-skills-list, .hobbies-list {
-            margin-top: 30px;
-            font-size: 1.5em;
-            text-align: center;
+        .skill-item span {
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+            font-weight: 400;
         }
 
-        .pipeline-skills-list p, .hobbies-list p {
-            margin: 10px 0;
-            color: #a9d6e5;
+        /* --- Other Skills & Hobbies --- */
+        .dual-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .dual-section > div {
+            flex: 1;
+            min-width: 280px;
+        }
+        
+        .skills-list {
+            list-style: none;
+            padding: 0;
         }
 
-        /* Contact Section */
+        .skills-list li {
+            background: var(--primary-color);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .skills-list li:hover {
+            transform: translateX(10px);
+            background: var(--secondary-color);
+        }
+
+        /* --- Contact Section --- */
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
         .contact-link {
-            color: #00b4d8;
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
-
         .contact-link:hover {
             text-decoration: underline;
+            color: #fff;
         }
 
-        /* Back-to-Top Button */
+        /* --- Footer --- */
+        footer {
+            background: var(--secondary-color);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            color: var(--light-text-color);
+        }
+
+        /* --- Back-to-Top Button --- */
         #back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
             display: none;
-            padding: 10px 15px;
-            background: #00b4d8;
-            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: var(--bg-color);
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2em;
-            transition: transform 0.3s;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+            z-index: 1000;
         }
-
         #back-to-top:hover {
             transform: translateY(-5px);
+            background: #fff;
         }
 
-        /* Footer */
-        footer {
-            background: #00509e;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-
-        /* Notification Badge */
+        /* --- Notification Badge --- */
         .notification-badge {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: #00b4d8;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            border-radius: 50px;
             font-size: 14px;
+            font-weight: bold;
             z-index: 1000;
             display: none;
             animation: slideIn 0.5s ease-out;
         }
 
         @keyframes slideIn {
-            from { transform: translateX(-100%); }
+            from { transform: translateX(-120%); }
             to { transform: translateX(0); }
         }
 
-        /* Image Gallery Styles - Empty but structure remains */
-        .image-gallery {
-            margin: 40px 0;
-            overflow: hidden;
-            position: relative;
+        /* --- Portfolio Modal --- */
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(26, 42, 71, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .gallery-row {
+        .modal.show {
             display: flex;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            padding: 10px 0;
+            opacity: 1;
         }
 
-        /* Mobile Optimizations */
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 900px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
+            animation: zoomIn 0.5s ease;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .modal-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .modal-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .modal-description h3 {
+            font-family: var(--title-font);
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .modal-description p {
+            color: var(--light-text-color);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            color: var(--bg-color);
+            background: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            header {
-                padding: 30px 15px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            section {
-                padding: 30px 15px;
-            }
-            
-            section h2 {
-                font-size: 1.8em;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 15px;
-            }
-            
-            .portfolio-item {
-                padding: 15px;
-            }
-            
-            .portfolio-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .portfolio-link {
-                width: 100%;
-                text-align: center;
-            }
-            
             .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
                 gap: 15px;
             }
-            
             .skill-item {
-                padding: 12px 15px;
-                font-size: 1em;
+                width: 100px;
+                height: 90px;
+                padding: 10px;
+                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
+    <div class="stars-bg"></div>
     
-    <header>
+    <header class="hero">
         <h1>Mohammed Afzal</h1>
-        <p>3D Event Designer | Product Displays | Exhibition Stalls | Stage Designs</p>
+        <p class="subtitle">I Bring Ideas to Life as a <span id="typing-text" class="typing-text"></span></p>
     </header>
 
-    <section class="about">
-        <h2>About Me</h2>
-        <p>I specialize in creating detailed 3D designs for event management including product displays, exhibition stalls, and event stages. My designs help visualize spaces before physical execution, ensuring perfect event setups. I transform concepts into realistic 3D visualizations that can be brought to life.</p>
-    </section>
+    <main>
+        <section id="about" class="container fade-in">
+            <h2>About Me</h2>
+            <p class="section-intro">
+                I am a versatile visual artist with a deep passion for creating immersive digital experiences. While I have a strong foundation in 2D and video editing, my core focus and expertise lie in **3D design for events, stages, and exhibitions**. I thrive on transforming concepts into breathtaking 3D visualizations and mind-bending anamorphic content that captivates audiences and turns any space into an unforgettable environment.
+            </p>
+        </section>
 
-    <section class="portfolio">
-        <h2>Portfolio Showcase</h2>
-        <p style="margin-bottom: 20px; font-style: italic; color: #a9d6e5;">For complete collection of my work, please check the presentations link below</p>
+        <section id="portfolio" class="container fade-in">
+            <h2>Portfolio Showcase</h2>
+            <p class="section-intro">My work ranges from foundational motion graphics to my primary passion: full-scale 3D event and stage design. Explore how I bring ambitious concepts to life.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-video-id="sL5habr5klU" data-title="Anamorphic Video 1" data-description="This anamorphic video is a specialized type of content designed to create a 3D illusion when viewed from a specific angle on a flat LED screen, making it a powerful tool for visual storytelling at events.">
+                    <img src="https://i.ytimg.com/vi/sL5habr5klU/hqdefault.jpg" alt="Anamorphic Video 1" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Anamorphic Video 1</h3><p>Click to view</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="7WHacHTyBdI" data-title="Anamorphic Video 2" data-description="A second example of anamorphic content, this video combines a physical stage design with the digital illusion on an LED wall, creating a seamless and truly immersive experience for the audience.">
+                    <img src="https://i.ytimg.com/vi/7WHacHTyBdI/hqdefault.jpg" alt="Anamorphic Video 2" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Anamorphic Video 2</h3><p>Click to view</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="FMvC8xcLziY" data-title="Infographic Video" data-description="This project showcases an infographic video, which uses motion graphics and 3D animation to present data, information, and ideas in a visually compelling and easy-to-understand format for a corporate event or presentation.">
+                    <img src="https://i.ytimg.com/vi/FMvC8xcLziY/hqdefault.jpg" alt="Infographic Video" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Infographic Video</h3><p>Click to view</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="_2ZnLzfbNEA" data-title="Arnold Render" data-description="Demonstration of high-quality rendering using Arnold, focusing on photorealism, lighting, and material definition.">
+                    <img src="https://i.ytimg.com/vi/_2ZnLzfbNEA/hqdefault.jpg" alt="Arnold Render" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Arnold Render</h3><p>Click to view render</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="AmJbIQUzD4o" data-title="Event Design Showcase" data-description="A walkthrough of a complex 3D event space designed for a major client, showcasing spatial design and visualization.">
+                    <img src="https://i.ytimg.com/vi/AmJbIQUzD4o/hqdefault.jpg" alt="Event Design Showcase" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Event Design Showcase</h3><p>Click to view walkthrough</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="K_mVYPLllN8" data-title="Stall Animation" data-description="An animated visualization of a custom exhibition stall, from concept to final design, perfect for trade shows.">
+                    <img src="https://i.ytimg.com/vi/K_mVYPLllN8/hqdefault.jpg" alt="Stall Animation" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Stall Animation</h3><p>Click to view concept</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="qEM7VoSfdi0" data-title="Stage Visualization" data-description="A dynamic visualization of a concert stage, complete with lighting rigs, LED screens, and atmospheric effects.">
+                    <img src="https://i.ytimg.com/vi/qEM7VoSfdi0/hqdefault.jpg" alt="Stage Visualization" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Stage Visualization</h3><p>Click to view design</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="St2UsankAqM" data-title="Latest 3D Work" data-description="A showcase of my recent 3D animation and modeling projects, demonstrating current techniques.">
+                    <img src="https://i.ytimg.com/vi/St2UsankAqM/hqdefault.jpg" alt="Latest 3D Work" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Latest 3D Work</h3><p>Click to view animation</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="HJD_oczYEpk" data-title="CGI Motion Graphics" data-description="Advanced CGI and motion graphics animation showcasing dynamic visual effects and complex compositing.">
+                    <img src="https://i.ytimg.com/vi/HJD_oczYEpk/hqdefault.jpg" alt="CGI Motion Graphics" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>CGI Motion Graphics</h3><p>Click to view animation</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="Gt1yE8zw-y4" data-title="Additional 3D Work" data-description="A compilation of various 3D projects demonstrating different techniques and styles.">
+                    <img src="https://i.ytimg.com/vi/Gt1yE8zw-y4/hqdefault.jpg" alt="Additional 3D Work" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>Additional 3D Work</h3><p>Click to view compilation</p></div>
+                </div>
+                <div class="portfolio-item" data-video-id="aqUkuVnHtOY" data-title="3D Animation" data-description="A reel of my best 3D animation work, covering character and object animation.">
+                    <img src="https://i.ytimg.com/vi/aqUkuVnHtOY/hqdefault.jpg" alt="3D Animation" class="portfolio-thumbnail">
+                    <div class="portfolio-item-content"><h3>3D Animation</h3><p>Click to view reel</p></div>
+                </div>
+            </div>
+            <div class="portfolio-links">
+                <a href="https://in.docworkspace.com/d/sIMiGvp6wAtygx8AG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">View My Presentations</a>
+                <a href="https://www.artstation.com/artwork/y4bPLJ" target="_blank" rel="noopener noreferrer" class="portfolio-link">More on ArtStation</a>
+                <a href="https://www.linkedin.com/in/mohammed-afzal-37048b332?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="portfolio-link">Connect on LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="skills" class="container fade-in">
+            <h2>Software Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item"><span>Maya</span></div>
+                <div class="skill-item"><span>Houdini</span></div>
+                <div class="skill-item"><span>Photoshop</span></div>
+                <div class="skill-item"><span>After Effects</span></div>
+                <div class="skill-item"><span>Premiere Pro</span></div>
+                <div class="skill-item"><span>Substance 3D</span></div>
+                <div class="skill-item"><span>Illustrator</span></div>
+                <div class="skill-item"><span>Nuke</span></div>
+                <div class="skill-item"><span>Lumion</span></div>
+                <div class="skill-item"><span>Arnold</span></div>
+                <div class="skill-item"><span>RealFlow</span></div>
+                <div class="skill-item"><span>SpeedTree</span></div>
+            </div>
+        </section>
         
-        <!-- Image Gallery Section - Empty but structure remains -->
-        <div class="image-gallery">
-            <h3>3D Design Gallery</h3>
-            <div class="gallery-row left-moving"></div>
-            <div class="gallery-row right-moving"></div>
-        </div>
+        <section class="container fade-in">
+            <div class="dual-section">
+                <div class="pipeline-skills">
+                    <h3 style="font-family: var(--title-font); font-size: 1.8rem; margin-bottom: 20px;">Core Skills</h3>
+                    <ul class="skills-list">
+                        <li>Anamorphic Content Creation</li>
+                        <li>3D Modeling & Texturing</li>
+                        <li>Lighting & Rendering</li>
+                        <li>Compositing & VFX</li>
+                        <li>Video Editing & Motion Graphics</li>
+                        <li>Event & Stage Visualization</li>
+                    </ul>
+                </div>
+                <div class="hobbies">
+                    <h3 style="font-family: var(--title-font); font-size: 1.8rem; margin-bottom: 20px;">Hobbies</h3>
+                    <ul class="skills-list">
+                        <li>Acting & Performance</li>
+                        <li>Script Writing</li>
+                        <li>Music & Lyric Composition</li>
+                        <li>Singing</li>
+                        <li>Learning new things in coding</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <div class="portfolio-grid">
-            <!-- Original Video 1 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/QSw3Lm4aQl4/mqdefault.jpg" 
-                        alt="2D Infographic Video Work" 
-                        class="video-thumbnail"
-                        data-video-id="QSw3Lm4aQl4"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>2D Infographic Video Work</p>
-            </div>
-            
-            <!-- Original Video 2 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/_2ZnLzfbNEA/mqdefault.jpg" 
-                        alt="Arnold Render Output" 
-                        class="video-thumbnail"
-                        data-video-id="_2ZnLzfbNEA"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>Arnold Rendering Output with Animation</p>
-            </div>
-            
-            <!-- Original Video 3 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/HJD_oczYEpk/mqdefault.jpg" 
-                        alt="CGI Motion Graphics" 
-                        class="video-thumbnail"
-                        data-video-id="HJD_oczYEpk"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>Stunning CGI Motion Graphics Animation</p>
-            </div>
-            
-            <!-- Original Video 4 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/GxHF8o9L38Y/mqdefault.jpg" 
-                        alt="Awesome Composition" 
-                        class="video-thumbnail"
-                        data-video-id="GxHF8o9L38Y"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>Awesome Composition with 3D Asset and Environment</p>
-            </div>
-            
-            <!-- Original Video 5 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/AmJbIQUzD4o/mqdefault.jpg" 
-                        alt="3D Event Design Showcase" 
-                        class="video-thumbnail"
-                        data-video-id="AmJbIQUzD4o"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>3D Walkthrough For CreditAccess Event</p>
-            </div>
-            
-            <!-- Original Video 6 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/K_mVYPLllN8/mqdefault.jpg" 
-                        alt="Exhibition Stall Animation" 
-                        class="video-thumbnail"
-                        data-video-id="K_mVYPLllN8"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>3d Walkthrough</p>
-            </div>
-            
-            <!-- Original Video 7 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/TFFfqMLLUCI/mqdefault.jpg" 
-                        alt="Product Display Walkthrough" 
-                        class="video-thumbnail"
-                        data-video-id="TFFfqMLLUCI"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>Photobooth Created as theme GoWild</p>
-            </div>
-            
-            <!-- Original Video 8 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/qEM7VoSfdi0/mqdefault.jpg" 
-                        alt="Stage Design Visualization" 
-                        class="video-thumbnail"
-                        data-video-id="qEM7VoSfdi0"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>Stage Design Walkthrough</p>
-            </div>
-            
-            <!-- Original Video 9 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/Dpfzaxdgbkk/mqdefault.jpg" 
-                        alt="3D Walkthrough Animation" 
-                        class="video-thumbnail"
-                        data-video-id="Dpfzaxdgbkk"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>3D Walkthrough</p>
-            </div>
-            
-            <!-- Original Video 10 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/aqUkuVnHtOY/mqdefault.jpg" 
-                        alt="3D Animation Showcase" 
-                        class="video-thumbnail"
-                        data-video-id="aqUkuVnHtOY"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>Stall 360 View</p>
-            </div>
-            
-            <!-- Original Video 11 -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/St2UsankAqM/mqdefault.jpg" 
-                        alt="Latest 3D Work" 
-                        class="video-thumbnail"
-                        data-video-id="St2UsankAqM"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>My 3D Walkthrough</p>
-            </div>
-            
-            <!-- NEW Video 12 - Added without touching existing videos -->
-            <div class="portfolio-item">
-                <div class="video-container">
-                    <img 
-                        src="https://img.youtube.com/vi/Gt1yE8zw-y4/mqdefault.jpg" 
-                        alt="Additional 3D Work" 
-                        class="video-thumbnail"
-                        data-video-id="Gt1yE8zw-y4"
-                        loading="lazy"
-                    >
-                    <button class="play-button">▶</button>
-                </div>
-                <p>ACSI 3D Walkthrough </p>
-            </div>
-        </div>
-        <div class="portfolio-links">
-            <a href="https://in.docworkspace.com/d/sIMiGvp6wAtygx8AG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">View My All Works Rended PPTS Here</a>
-            <a href="https://www.artstation.com/artwork/y4bPLJ" target="_blank" rel="noopener noreferrer" class="portfolio-link">View More on ArtStation</a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="portfolio-link">Connect with me on LinkedIn</a>
-        </div>
-    </section>
-
-    <section class="skills">
-        <h2>Software Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-item">Nuke</div>
-            <div class="skill-item">Maya</div>
-            <div class="skill-item">RealFlow</div>
-            <div class="skill-item">Houdini</div>
-            <div class="skill-item">Photoshop</div>
-            <div class="skill-item">Silhouette</div>
-            <div class="skill-item">SpeedTree</div>
-            <div class="skill-item">Premiere Pro</div>
-            <div class="skill-item">Adobe After Effects</div>
-            <div class="skill-item">Substance 3D Painter</div>
-            <div class="skill-item">Illustrator</div>
-            <div class="skill-item">Lumion</div>
-            <div class="skill-item">Arnold</div>
-        </div>
-    </section>
-
-    <section class="pipeline-skills">
-        <h2>Pipeline Skills</h2>
-        <div class="pipeline-skills-list">
-            <p>3D Modeling</p>
-            <p>Texturing</p>
-            <p>Lighting</p>
-            <p>Compositing</p>
-            <p>Video Editing</p>
-            <p>Rendering</p>
-        </div>
-    </section>
-
-    <section class="hobbies">
-        <h2>Hobbies</h2>
-        <div class="hobbies-list">
-            <p>Acting</p>
-            <p>Video Making</p>
-            <p>Script Writing</p>
-            <p>Music Lyrics Writing</p>
-            <p>Singing</p>
-            <p>Learning new things in coding</p>
-        </div>
-    </section>
-
-    <section class="contact">
-        <h2>Contact Me</h2>
-        <address>
-            <p>Email: <a href="mailto:afzal24052002@gmail.com" class="contact-link">afzal24052002@gmail.com</a></p>
-            <p>Phone: <a href="tel:9036526421" class="contact-link">9036526421</a></p>
-        </address>
-    </section>
-
+        <section id="contact" class="container contact fade-in">
+            <h2>Get In Touch</h2>
+            <p>Ready to create something amazing? Let's talk.</p>
+            <address style="font-style: normal;">
+                <p>Email: <a href="mailto:afzal24052002@gmail.com" class="contact-link">afzal24052002@gmail.com</a></p>
+                <p>Phone: <a href="tel:9036526421" class="contact-link">9036526421</a></p>
+            </address>
+        </section>
+    </main>
+    
     <footer>
-        <p>© 2024 Mohammed Afzal. All rights reserved.</p>
+        <p>© 2025 Mohammed Afzal. All Rights Reserved.</p>
     </footer>
 
+    <!-- Back-to-Top Button -->
     <button id="back-to-top">↑</button>
-    <div class="notification-badge" id="notification">Sending notification...</div>
+
+    <!-- Notification Badge -->
+    <div class="notification-badge" id="notification"></div>
+    
+    <!-- Portfolio Modal -->
+    <div id="portfolio-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close-btn">×</span>
+            <div class="modal-video-container" id="modal-video">
+                <!-- YouTube Iframe will be inserted here by JS -->
+            </div>
+            <div class="modal-description">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description-text"></p>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Telegram Bot Configuration
-        const TELEGRAM_BOT_TOKEN = '7525466128:AAEiC6124Ne7RK1UwIZHC9fegh5LPFmihNw';
-        const TELEGRAM_CHAT_ID = '7076125469';
-        
-        // Function to get visitor IP
-        async function getVisitorIP() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                console.error('Error fetching IP:', error);
-                return 'IP unavailable';
-            }
-        }
-
-        // Function to send Telegram notification with IP
-        async function sendTelegramNotification(action) {
-            const notification = document.getElementById('notification');
-            notification.textContent = `Thanks for ${action}!`;
-            notification.style.display = 'block';
-            
-            try {
-                const ipAddress = await getVisitorIP();
-                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: `🔔 Portfolio Visit:\n\nVisitor ${action} at ${new Date().toLocaleString()}\nIP: ${ipAddress}\nFrom: ${window.location.href}`,
-                    }),
-                });
-                
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 3000);
-                
-                return await response.json();
-            } catch (error) {
-                console.error('Telegram notification failed:', error);
-                notification.textContent = "Notification failed";
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 3000);
-            }
-        }
-
-        // Visitor notification with IP
-        window.addEventListener('load', () => {
-            sendTelegramNotification('visiting my portfolio');
-        });
-
         document.addEventListener("DOMContentLoaded", () => {
-            // Back-to-top button functionality
-            const backToTopButton = document.getElementById("back-to-top");
+            // --- Telegram Bot Configuration (Keep your details here) ---
+            const TELEGRAM_BOT_TOKEN = '7525466128:AAEiC6124Ne7RK1UwIZHC9fegh5LPFmihNw';
+            const TELEGRAM_CHAT_ID = '7076125469';
+
+            // --- Enhanced Notification Function ---
+            let notificationQueue = [];
+            let isNotifying = false;
+
+            async function getVisitorIP() {
+                try {
+                    const response = await fetch('https://api.ipify.org?format=json');
+                    const data = await response.json();
+                    return data.ip;
+                } catch (error) {
+                    console.error('Error fetching IP:', error);
+                    return 'IP unavailable';
+                }
+            }
+
+            function processNotificationQueue() {
+                if (notificationQueue.length === 0 || isNotifying) return;
+                isNotifying = true;
+                const { message, action } = notificationQueue.shift();
+                
+                const notificationBadge = document.getElementById('notification');
+                notificationBadge.textContent = message;
+                notificationBadge.style.display = 'block';
+                
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: action }),
+                }).catch(error => console.error('Telegram notification failed:', error))
+                .finally(() => {
+                    setTimeout(() => {
+                        notificationBadge.style.display = 'none';
+                        isNotifying = false;
+                        processNotificationQueue();
+                    }, 3000);
+                });
+            }
+
+            async function sendTelegramNotification(logMessage, userMessage) {
+                const ipAddress = await getVisitorIP();
+                const fullAction = `🔔 Visitor Activity:\nAction: ${logMessage}\nIP: ${ipAddress}\nTime: ${new Date().toLocaleString()}`;
+                notificationQueue.push({ message: userMessage, action: fullAction });
+                processNotificationQueue();
+            }
             
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 300) {
-                    backToTopButton.style.display = "block";
+            // --- Initial Visitor Notification ---
+            sendTelegramNotification('Visited Portfolio', 'Welcome to my portfolio!');
+
+            // --- Typing Animation ---
+            const typingTextElement = document.getElementById('typing-text');
+            const roles = ["3D Event Designer.", "Anamorphic Artist.", "Stage Visualizer.", "Creative Designer."];
+            let roleIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < roles[roleIndex].length) {
+                    typingTextElement.textContent += roles[roleIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 100);
                 } else {
-                    backToTopButton.style.display = "none";
+                    setTimeout(erase, 2000);
+                }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    typingTextElement.textContent = roles[roleIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, 50);
+                } else {
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(type, 500);
+                }
+            }
+            type();
+            
+            // --- Back-to-Top Button ---
+            const backToTopButton = document.getElementById("back-to-top");
+            window.addEventListener("scroll", () => {
+                backToTopButton.style.display = (window.scrollY > 300) ? "block" : "none";
+            });
+            backToTopButton.addEventListener("click", () => window.scrollTo({ top: 0 }));
+
+            // --- Fade-in on Scroll ---
+            const faders = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            faders.forEach(fader => observer.observe(fader));
+            
+            // --- Portfolio Modal Logic ---
+            const modal = document.getElementById('portfolio-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description-text');
+            const closeModalBtn = document.getElementById('modal-close-btn');
+
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const videoId = item.dataset.videoId;
+                    const title = item.dataset.title;
+                    const description = item.dataset.description;
+
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                    
+                    sendTelegramNotification(`Played video: ${title}`, `Now playing: ${title}`);
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('show');
+                modalVideo.innerHTML = ''; // Stop video by removing iframe
+                document.body.style.overflow = 'auto';
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(); // Close if overlay is clicked
+            });
+            
+            // Allow closing with the Esc key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === "Escape" && modal.classList.contains('show')) {
+                    closeModal();
                 }
             });
-            
-            // Smooth scroll to the top
-            backToTopButton.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            });
 
-            // Enhanced video click tracking
-            document.querySelectorAll('.video-container').forEach(container => {
-                const thumbnail = container.querySelector('.video-thumbnail');
-                const playButton = container.querySelector('.play-button');
-                
-                playButton.addEventListener('click', () => {
-                    const videoId = thumbnail.dataset.videoId;
-                    const projectTitle = container.closest('.portfolio-item').querySelector('p').textContent;
-                    
-                    container.innerHTML = `
-                        <iframe 
-                            src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-                            title="YouTube video player" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen
-                        ></iframe>
-                    `;
-                    
-                    sendTelegramNotification(`played your video: ${projectTitle}`);
-                });
-            });
-
-            // Link click tracking
-            document.querySelectorAll('.portfolio-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const linkText = e.target.textContent.trim();
-                    sendTelegramNotification(`clicked your ${linkText} link`);
-                });
-            });
-
-            // Contact link tracking
-            document.querySelectorAll('.contact-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const action = e.target.textContent.includes('@') ? 'viewed your email' : 'viewed your phone number';
-                    sendTelegramNotification(action);
+            // --- Link Click Tracking ---
+            document.querySelectorAll('.portfolio-link, .contact-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    sendTelegramNotification(`Clicked link: ${link.textContent.trim()}`, `Redirecting you...`);
                 });
             });
         });
     </script>
 </body>
 </html>
+
+
