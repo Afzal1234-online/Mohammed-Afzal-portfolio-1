@@ -372,6 +372,15 @@
             text-align: center;
             gap: 15px;
             margin-top: 20px;
+            
+            /* Highlighting for button container */
+            animation: highlight-glow 3s infinite;
+        }
+        
+        @keyframes highlight-glow {
+            0% { box-shadow: 0 0 5px rgba(0, 229, 255, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(0, 229, 255, 0.4); }
         }
 
         .plus-button {
@@ -405,6 +414,7 @@
         .hire-me-text {
             color: var(--light-text-color);
             font-size: 1rem;
+            font-weight: bold; /* Make the text bolder */
             opacity: 0;
             transition: opacity 0.5s ease;
         }
@@ -813,7 +823,7 @@
                     <div id="logo-pixie" class="logo-item">
                         <a href="https://pixieexperience.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Pixie Experience website">
                             <img src="pixie.png" alt="Pixie Experience Logo">
-                            <span>Pixie Experience</span>
+                            <span style="text-align: center;">Pixie Experience</span>
                         </a>
                     </div>
                 </div>
