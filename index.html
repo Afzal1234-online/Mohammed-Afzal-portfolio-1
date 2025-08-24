@@ -119,6 +119,20 @@
             from, to { border-color: transparent; }
             50% { border-color: var(--accent-color); }
         }
+        
+        /* New "Scroll Down" Text */
+        .scroll-down {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--light-text-color);
+            animation: pulse-light 2s infinite;
+        }
+        
+        @keyframes pulse-light {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
 
         /* --- Section Titles --- */
         h2 {
@@ -656,6 +670,7 @@
     <header class="hero">
         <h1>Mohammed Afzal</h1>
         <p class="subtitle">I Bring Ideas to Life as a <span id="typing-text" class="typing-text"></span></p>
+        <p class="scroll-down">Scroll down to see more</p>
     </header>
 
     <main>
@@ -736,11 +751,6 @@
                     <div class="portfolio-item-content"><h3>3D Stall Design</h3><p>Click to view</p></div>
                 </div>
 
-                <div class="portfolio-item" data-video-id="QSw3Lm4aQl4" data-title="Infographic for Planotech Events" data-description="A bespoke infographic video created specifically for Planotech Events. This animation was designed to communicate their services and value proposition in a clear and visually striking manner. It combines custom 3D assets, branded motion graphics, and a professional narrative to deliver a powerful marketing message for a corporate audience.">
-                    <img src="https://i.ytimg.com/vi/QSw3Lm4aQl4/hqdefault.jpg" alt="Infographic for Planotech Events" class="portfolio-thumbnail">
-                    <div class="portfolio-item-content"><h3>Infographic for Planotech Events</h3><p>Click to view design</p></div>
-                </div>
-
                 <div class="portfolio-item" data-video-id="GxHF8o9L38Y" data-title="3D Compositing & VFX Breakdown" data-description="This video provides an insightful look into the process of 3D compositing and visual effects. It showcases a final shot and then breaks it down layer by layer, revealing the techniques used for integration and effects creation. This demonstrates a deep understanding of the VFX pipeline, from initial 3D rendering to the final polished composition.">
                     <img src="https://i.ytimg.com/vi/GxHF8o9L38Y/hqdefault.jpg" alt="3D Compositing & VFX Breakdown" class="portfolio-thumbnail">
                     <div class="portfolio-item-content"><h3>3D Compositing & VFX Breakdown</h3><p>Click to view walkthrough</p></div>
@@ -758,7 +768,7 @@
 
             </div>
             <div class="portfolio-links">
-                <a href="https://in.docworkspace.com/d/sIMiGvp6wAtygx8AG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">View My Presentations</a>
+                <a href="https://in.docworkspace.com/d/sIMiGvp6wAtygx8AG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">Click Here View My More 3D Works</a>
                 <a href="https://www.artstation.com/artwork/y4bPLJ" target="_blank" rel="noopener noreferrer" class="portfolio-link">More on ArtStation</a>
                 <a href="https://www.linkedin.com/in/mohammed-afzal-37048b332?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="portfolio-link">Connect on LinkedIn</a>
             </div>
@@ -823,7 +833,7 @@
                     <div id="logo-pixie" class="logo-item">
                         <a href="https://pixieexperience.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Pixie Experience website">
                             <img src="pixie.png" alt="Pixie Experience Logo">
-                            <span>Pixie_Experience</span>
+                            <span style="text-align: center;">Pixie Experience</span>
                         </a>
                     </div>
                 </div>
