@@ -6,7 +6,7 @@
     <title>Mohammed Afzal - 3D Event & Anamorphic Artist</title>
     <style>
         /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.comcom/css2?family=Orbitron:wght@700&family=Roboto:wght@300;400;700&display=swap');
 
         /* --- CSS Variables (Theme) --- */
         :root {
@@ -190,6 +190,77 @@
             height: 180px;
             object-fit: cover;
             display: block;
+        }
+
+        /* Styles for the new portrait video carousel container */
+        .portrait-carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Styles for the navigation buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .carousel-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            background-color: #fff;
+        }
+
+        .carousel-btn.left {
+            left: 5px;
+        }
+
+        .carousel-btn.right {
+            right: 5px;
+        }
+        
+        /* New styles for portrait video carousel */
+        .portrait-carousel {
+            display: flex;
+            overflow-x: scroll;
+            gap: 20px;
+            padding: 20px 0;
+            cursor: grab;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        
+        .portrait-carousel::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .portrait-carousel .portfolio-item {
+            flex: 0 0 auto;
+            width: 250px;
+            height: 400px;
+        }
+        
+        .portrait-carousel .portfolio-item .portfolio-thumbnail {
+            height: 280px;
+            object-fit: cover;
         }
 
         .portfolio-item-content {
@@ -554,7 +625,14 @@
             margin-bottom: 15px;
         }
 
-        .modal-video-container iframe {
+        .modal-video-container.is-portrait {
+            width: 400px; /* Adjust as needed */
+            margin: 0 auto;
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
+        }
+        
+        .modal-video-container iframe,
+        .modal-video-container video {
             position: absolute;
             top: 0;
             left: 0;
@@ -661,6 +739,12 @@
                 flex-direction: column;
                 gap: 30px;
             }
+            .modal-content {
+                padding: 10px;
+            }
+            .modal-video-container.is-portrait {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -687,88 +771,145 @@
             <div class="portfolio-grid">
                 
                 <div class="portfolio-item" data-video-id="sL5habr5klU" data-title="Anamorphic Video 1" data-description="This anamorphic video showcases the power of forced perspective on large-scale LED displays. It's a specialized form of content designed to create a stunning 3D illusion when viewed from a specific vantage point. This technique is highly effective for captivating audiences at product launches, corporate events, and public installations, turning a flat screen into a window to another dimension.">
-                    <img src="https://i.ytimg.com/vi/sL5habr5klU/hqdefault.jpg" alt="Anamorphic Video 1" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/sL5habr5klU/hqdefault.jpg" alt="Anamorphic Video 1" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Anamorphic Video 1</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="7WHacHTyBdI" data-title="Anamorphic Video 2" data-description="Building upon anamorphic principles, this piece demonstrates a seamless integration of digital illusion with physical stage elements. The content on the LED wall is precisely calculated to extend the real-world environment, creating a truly immersive experience. This showcases the potential for blending digital art with architectural design to create unforgettable moments.">
-                    <img src="https://i.ytimg.com/vi/7WHacHTyBdI/hqdefault.jpg" alt="Anamorphic Video 2" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/7WHacHTyBdI/hqdefault.jpg" alt="Anamorphic Video 2" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Anamorphic Video 2</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="U34sLS3C42I" data-title="Anamorphic Video 3" data-description="A further exploration into anamorphic content creation, this video focuses on dynamic motion and complex visual effects. The illusion of depth is crafted to engage viewers and tell a compelling visual story without the need for 3D glasses. It highlights my ability to design and execute high-impact content for unique screen configurations at large-scale events.">
-                    <img src="https://i.ytimg.com/vi/U34sLS3C42I/hqdefault.jpg" alt="Anamorphic Video 3" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/U34sLS3C42I/hqdefault.jpg" alt="Anamorphic Video 3" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Anamorphic Video 3</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="ymzJPp6yVNk" data-title="Anamorphic Video 4" data-description="This final piece in the anamorphic series pushes the boundaries of digital art and forced perspective. It features intricate 3D models and fluid animations that appear to break free from the confines of the screen. This project serves as a testament to the powerful storytelling capabilities of anamorphic content in modern advertising and live event production.">
-                    <img src="https://i.ytimg.com/vi/ymzJPp6yVNk/hqdefault.jpg" alt="Anamorphic Video 4" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/ymzJPp6yVNk/hqdefault.jpg" alt="Anamorphic Video 4" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Anamorphic Video 4</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="FMvC8xcLziY" data-title="Infographic Video" data-description="This project is a prime example of data visualization brought to life through motion graphics. I transformed complex information into a visually engaging and easy-to-digest animated video. Using a clean design aesthetic and smooth animations, this infographic effectively communicates key messages for corporate presentations, marketing campaigns, and educational content.">
-                    <img src="https://i.ytimg.com/vi/FMvC8xcLziY/hqdefault.jpg" alt="Infographic Video" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/FMvC8xcLziY/hqdefault.jpg" alt="Infographic Video" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Infographic Video</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="_2ZnLzfbNEA" data-title="Arnold Render Showcase" data-description="A demonstration of high-fidelity 3D rendering using the Arnold engine. This project focuses on achieving photorealism through meticulous lighting, advanced shading techniques, and detailed texturing. It showcases my technical proficiency in creating realistic materials, which is crucial for producing convincing product visualizations and architectural mockups.">
-                    <img src="https://i.ytimg.com/vi/_2ZnLzfbNEA/hqdefault.jpg" alt="Arnold Render Showcase" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/_2ZnLzfbNEA/hqdefault.jpg" alt="Arnold Render Showcase" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Arnold Render Showcase</h3><p>Click to view render</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="AmJbIQUzD4o" data-title="Walkthrough for '25 Years of CA Grameen'" data-description="This detailed 3D walkthrough was created to pre-visualize the '25 Years of CA Grameen' anniversary event. It allowed the client and stakeholders to experience the venue layout, branding, and attendee flow well in advance. This crucial planning tool helps in making informed decisions on spatial design and decor, ensuring the celebratory atmosphere is perfectly captured for the milestone event.">
-                    <img src="https://i.ytimg.com/vi/AmJbIQUzD4o/hqdefault.jpg" alt="Walkthrough for '25 Years of CA Grameen'" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/AmJbIQUzD4o/hqdefault.jpg" alt="Walkthrough for '25 Years of CA Grameen'" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Walkthrough for '25 Years of CA Grameen'</h3><p>Click to view walkthrough</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="K_mVYPLllN8" data-title="Event Walkthrough for Swiss Re" data-description="A complete event walkthrough designed for the corporate client, Swiss Re. This visualization showcases the entire venue, mapping out key areas, delegate movement, and branding opportunities. By creating a digital twin of the event space, we enabled the organizers to perfect the layout and ambiance, ensuring a seamless and professional experience for all attendees.">
-                    <img src="https://i.ytimg.com/vi/K_mVYPLllN8/hqdefault.jpg" alt="Event Walkthrough for Swiss Re" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/K_mVYPLllN8/hqdefault.jpg" alt="Event Walkthrough for Swiss Re" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Event Walkthrough for Swiss Re</h3><p>Click to view concept</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="qEM7VoSfdi0" data-title="Stage Visualization for CA Grameen" data-description="This is a bespoke stage visualization for the '25 Years of CA Grameen' celebration. The design incorporates massive LED backdrops, dynamic lighting rigs, and branded elements to create an impactful setting for the event's main proceedings. Visualizing the stage in 3D was critical for coordinating technical elements and ensuring the final result was both visually stunning and functionally sound.">
-                    <img src="https://i.ytimg.com/vi/qEM7VoSfdi0/hqdefault.jpg" alt="Stage Visualization for CA Grameen" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/qEM7VoSfdi0/hqdefault.jpg" alt="Stage Visualization for CA Grameen" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Stage Visualization for CA Grameen</h3><p>Click to view design</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="St2UsankAqM" data-title="3D Walkthrough" data-description="This project showcases a versatile 3D walkthrough, a powerful tool for any spatial design. Whether for real estate, event venues, or architectural projects, a walkthrough provides a first-person perspective that static images cannot. It allows for a comprehensive understanding of the space, its scale, and its potential, making it an essential asset for presentations and client approvals.">
-                    <img src="https://i.ytimg.com/vi/St2UsankAqM/hqdefault.jpg" alt="3D Walkthrough" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/St2UsankAqM/hqdefault.jpg" alt="3D Walkthrough" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>3D Walkthrough</h3><p>Click to view animation</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="HJD_oczYEpk" data-title="CGI Motion Graphics Reel" data-description="This reel focuses on the integration of advanced CGI with motion graphics. It features complex visual effects, dynamic particle simulations, and seamless compositing to create high-energy animations. This type of work is ideal for creating stunning title sequences, product advertisements, and broadcast graphics that demand attention.">
-                    <img src="https://i.ytimg.com/vi/HJD_oczYEpk/hqdefault.jpg" alt="CGI Motion Graphics Reel" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/HJD_oczYEpk/hqdefault.jpg" alt="CGI Motion Graphics Reel" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>CGI Motion Graphics Reel</h3><p>Click to view animation</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="Gt1yE8zw-y4" data-title="Diverse 3D Project Compilation" data-description="A showcase of various 3D projects that demonstrate my versatility as an artist. This compilation includes everything from architectural rendering to abstract motion art. It highlights my ability to adapt to different styles and project requirements, tackling unique creative challenges with a robust technical skillset.">
-                    <img src="https://i.ytimg.com/vi/Gt1yE8zw-y4/hqdefault.jpg" alt="Diverse 3D Project Compilation" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/Gt1yE8zw-y4/hqdefault.jpg" alt="Diverse 3D Project Compilation" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Diverse 3D Project Compilation</h3><p>Click to view compilation</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="aqUkuVnHtOY" data-title="3D Stall Design" data-description="This project focuses on the conceptualization and design of a modern exhibition stall. The 3D model allows for a detailed exploration of the structure, materials, lighting, and placement of branding. This process helps clients visualize their presence at a trade show and make informed decisions on the design and budget before construction.">
-                    <img src="https://i.ytimg.com/vi/aqUkuVnHtOY/hqdefault.jpg" alt="3D Stall Design" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/aqUkuVnHtOY/hqdefault.jpg" alt="3D Stall Design" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>3D Stall Design</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="GxHF8o9L38Y" data-title="3D Compositing & VFX Breakdown" data-description="This video provides an insightful look into the process of 3D compositing and visual effects. It showcases a final shot and then breaks it down layer by layer, revealing the techniques used for integration and effects creation. This demonstrates a deep understanding of the VFX pipeline, from initial 3D rendering to the final polished composition.">
-                    <img src="https://i.ytimg.com/vi/GxHF8o9L38Y/hqdefault.jpg" alt="3D Compositing & VFX Breakdown" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/GxHF8o9L38Y/hqdefault.jpg" alt="3D Compositing & VFX Breakdown" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>3D Compositing & VFX Breakdown</h3><p>Click to view walkthrough</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="TFFfqMLLUCI" data-title="Themed 3D Photobooth Design" data-description="A creative design for an immersive, themed photobooth for events. This concept, based on a 'wild' theme, uses 3D modeling to plan the physical construction and interactive elements. Such visualizations are key to creating unique, memorable experiences for guests that encourage social media sharing and enhance the overall event atmosphere.">
-                    <img src="https://i.ytimg.com/vi/TFFfqMLLUCI/hqdefault.jpg" alt="Themed 3D Photobooth Design" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/TFFfqMLLUCI/hqdefault.jpg" alt="Themed 3D Photobooth Design" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Themed 3D Photobooth Design</h3><p>Click to view</p></div>
                 </div>
 
                 <div class="portfolio-item" data-video-id="Dpfzaxdgbkk" data-title="Event Walk-through in 3D" data-description="Experience a virtual tour of a fully realized event space with this detailed 3D walk-through. This animation allows stakeholders to explore the venue from a first-person perspective, assessing everything from sightlines to traffic flow. It is an invaluable tool in the event planning process, ensuring the final environment perfectly matches the client's vision.">
-                    <img src="https://i.ytimg.com/vi/Dpfzaxdgbkk/hqdefault.jpg" alt="Event Walk-through in 3D" class="portfolio-thumbnail">
+                    <img src="https://i.ytimg.com/vi/Dpfzaxdgbkk/hqdefault.jpg" alt="Event Walk-through in 3D" class="portfolio-thumbnail" loading="lazy">
                     <div class="portfolio-item-content"><h3>Event Walk-through in 3D</h3><p>Click to view animation</p></div>
                 </div>
-
             </div>
+
+            <h2 style="margin-top: 80px;">Portrait Video Showcase</h2>
+            <p class="section-intro">Here is a collection of my vertical video work, ideal for social media and mobile-first platforms.</p>
+            <div class="portrait-carousel-container">
+                <button class="carousel-btn left" id="carousel-btn-left">‹</button>
+                <div class="portrait-carousel" id="portrait-carousel">
+                    
+                    <div class="portfolio-item" data-video-src="curry and burry.mp4" data-title="Curry and Burry" data-is-portrait="true">
+                        <video class="portfolio-thumbnail" muted preload="metadata" playsinline loading="lazy">
+                            <source src="curry and burry.mp4#t=0.5" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="portfolio-item-content"><h3>Curry and Burry</h3><p>Click to play</p></div>
+                    </div>
+
+                    <div class="portfolio-item" data-video-src="ubanraga 3.mp4" data-title="Ubanraga 3" data-is-portrait="true">
+                        <video class="portfolio-thumbnail" muted preload="metadata" playsinline loading="lazy">
+                            <source src="ubanraga 3.mp4#t=0.5" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="portfolio-item-content"><h3>1 Video Created For Urban Ragar Short reel</h3><p>Click to play</p></div>
+                    </div>
+
+                    <div class="portfolio-item" data-video-src="ubanraga 1.mp4" data-title="Ubanraga 1" data-is-portrait="true">
+                        <video class="portfolio-thumbnail" muted preload="metadata" playsinline loading="lazy">
+                            <source src="ubanraga 1.mp4#t=0.5" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="portfolio-item-content"><h3>2 Video Created for Ubanraga Short Reel</h3><p>Click to play</p></div>
+                    </div>
+
+                    <div class="portfolio-item" data-video-src="urban ragar 2.mp4" data-title="Urban Ragar 2" data-is-portrait="true">
+                        <video class="portfolio-thumbnail" muted preload="metadata" playsinline loading="lazy">
+                            <source src="urban ragar 2.mp4#t=0.5" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="portfolio-item-content"><h3>3 Video Created For Urban Ragar Short reel</h3><p>Click to play</p></div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-video-src="pixie 1.mp4" data-title="Pixie 1" data-is-portrait="true">
+                        <video class="portfolio-thumbnail" muted preload="metadata" playsinline loading="lazy">
+                            <source src="pixie 1.mp4#t=0.5" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="portfolio-item-content"><h3>Short Reel Infograpic Video Created for pixieexperience</h3><p>Click to play</p></div>
+                    </div>
+
+                    <div class="portfolio-item" data-video-src="pixie 3d info video.mp4" data-title="Pixie 3D Info Video" data-is-portrait="true">
+                        <video class="portfolio-thumbnail" muted preload="metadata" playsinline loading="lazy">
+                            <source src="pixie 3d info video.mp4#t=0.5" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="portfolio-item-content"><h3>Short info Reel created for Pixie</h3><p>Click to play</p></div>
+                    </div>
+                </div>
+                <button class="carousel-btn right" id="carousel-btn-right">›</button>
+            </div>
+            
             <div class="portfolio-links">
-                <a href="https://in.docworkspace.com/d/sIMiGvp6wAtygx8AG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">Click Here View My More 3D Works</a>
+                <a href="https://in.docworkspace.com/d/sIMiGvp6wAtygx8AG?sa=601.1074" target="_blank" rel="noopener noreferrer" class="portfolio-link presentation-link">View My More 3d Works Presentations here</a>
                 <a href="https://www.artstation.com/artwork/y4bPLJ" target="_blank" rel="noopener noreferrer" class="portfolio-link">More on ArtStation</a>
                 <a href="https://www.linkedin.com/in/mohammed-afzal-37048b332?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="portfolio-link">Connect on LinkedIn</a>
             </div>
@@ -980,7 +1121,7 @@
             window.addEventListener("scroll", () => {
                 backToTopButton.style.display = (window.scrollY > 300) ? "block" : "none";
             });
-            backToTopButton.addEventListener("click", () => window.scrollTo({ top: 0 }));
+            backToTopButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
             // --- Fade-in on Scroll ---
             const faders = document.querySelectorAll('.fade-in');
@@ -989,7 +1130,6 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Start logo animation when the experience section is visible
                         if (entry.target.id === 'experience') {
                             animateLogos();
                         }
@@ -1002,40 +1142,55 @@
             
             // --- Portfolio Modal Logic ---
             const modal = document.getElementById('portfolio-modal');
-            const modalVideo = document.getElementById('modal-video');
+            const modalVideoContainer = document.getElementById('modal-video');
             const modalTitle = document.getElementById('modal-title');
             const modalDescription = document.getElementById('modal-description-text');
             const closeModalBtn = document.getElementById('modal-close-btn');
 
-            document.querySelectorAll('.portfolio-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const videoId = item.dataset.videoId;
-                    const title = item.dataset.title;
-                    const description = item.dataset.description;
+            // START: MODAL CLICK FIX
+            // Using event delegation to handle clicks on all portfolio items, including cloned ones.
+            document.addEventListener('click', (event) => {
+                const portfolioItem = event.target.closest('.portfolio-item');
+
+                if (portfolioItem) {
+                    const videoId = portfolioItem.dataset.videoId;
+                    const videoSrc = portfolioItem.dataset.videoSrc;
+                    const title = portfolioItem.dataset.title;
+                    const description = portfolioItem.dataset.description;
+                    const isPortrait = portfolioItem.dataset.isPortrait === 'true';
 
                     modalTitle.textContent = title;
-                    modalDescription.textContent = description;
-                    modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    modalDescription.textContent = description || '';
+                    
+                    if (isPortrait) {
+                        modalVideoContainer.classList.add('is-portrait');
+                        modalVideoContainer.innerHTML = `<video src="${videoSrc}" controls autoplay playsinline style="object-fit: contain;"></video>`;
+                    } else if (videoId) { // Ensure there's a video ID for YouTube links
+                        modalVideoContainer.classList.remove('is-portrait');
+                        modalVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0" title="${title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    } else {
+                        return; // Do nothing if it's a portfolio item without a video
+                    }
                     
                     modal.classList.add('show');
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                    document.body.style.overflow = 'hidden';
                     
                     sendTelegramNotification(`Played video: ${title}`, `Now playing: ${title}`);
-                });
+                }
             });
+            // END: MODAL CLICK FIX
+
 
             function closeModal() {
                 modal.classList.remove('show');
-                modalVideo.innerHTML = ''; // Stop video by removing iframe
+                modalVideoContainer.innerHTML = '';
                 document.body.style.overflow = 'auto';
             }
 
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal(); // Close if overlay is clicked
+                if (e.target === modal) closeModal();
             });
-            
-            // Allow closing with the Esc key
             window.addEventListener('keydown', (e) => {
                 if (e.key === "Escape" && modal.classList.contains('show')) {
                     closeModal();
@@ -1054,29 +1209,18 @@
             const hireMeText = document.getElementById('hire-me-text');
             const hireMeModal = document.getElementById('hire-me-modal');
             const hireModalCloseBtn = document.getElementById('hire-modal-close-btn');
-            const phoneNumber = '9036526421';
+            let logosAnimated = false;
 
             function animateLogos() {
+                if (logosAnimated) return;
+                logosAnimated = true;
                 const planotechLogo = document.getElementById('logo-planotech');
                 const pixieLogo = document.getElementById('logo-pixie');
                 const separator = document.getElementById('separator-1');
 
-                // Step 1: Animate Planotech logo
-                setTimeout(() => {
-                    planotechLogo.classList.add('visible');
-                }, 500);
-
-                // Step 2: Animate separator
-                setTimeout(() => {
-                    separator.classList.add('visible');
-                }, 1500);
-
-                // Step 3: Animate Pixie logo and mark as current
-                setTimeout(() => {
-                    pixieLogo.classList.add('visible', 'current');
-                }, 2500);
-
-                // Step 4: Animate Hire Me button and text
+                setTimeout(() => planotechLogo.classList.add('visible'), 500);
+                setTimeout(() => separator.classList.add('visible'), 1500);
+                setTimeout(() => pixieLogo.classList.add('visible', 'current'), 2500);
                 setTimeout(() => {
                     hireMeBtn.classList.add('visible');
                     hireMeText.classList.add('visible');
@@ -1084,30 +1228,110 @@
             }
 
             // --- Hire Me Modal Logic ---
+            function closeHireMeModal() {
+                hireMeModal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
             hireMeBtn.addEventListener('click', () => {
                 sendTelegramNotification('Clicked Hire Me button', 'New job inquiry!');
                 hireMeModal.classList.add('show');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden';
             });
 
-            hireModalCloseBtn.addEventListener('click', () => {
-                hireMeModal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            });
-            
+            hireModalCloseBtn.addEventListener('click', closeHireMeModal);
             hireMeModal.addEventListener('click', (e) => {
-                if (e.target === hireMeModal) {
-                    hireMeModal.classList.remove('show');
-                    document.body.style.overflow = 'auto';
-                }
+                if (e.target === hireMeModal) closeHireMeModal();
+            });
+            window.addEventListener('keydown', (e) => {
+                if (e.key === "Escape" && hireMeModal.classList.contains('show')) closeHireMeModal();
             });
 
-            window.addEventListener('keydown', (e) => {
-                if (e.key === "Escape" && hireMeModal.classList.contains('show')) {
-                    hireMeModal.classList.remove('show');
-                    document.body.style.overflow = 'auto';
-                }
-            });
+            // --- Portrait Video Thumbnail Hover Logic ---
+            // Using event delegation for hover effects on original and cloned items
+            const portraitCarouselContainer = document.querySelector('.portrait-carousel-container');
+            if (portraitCarouselContainer) {
+                portraitCarouselContainer.addEventListener('mouseover', (event) => {
+                    const item = event.target.closest('.portfolio-item');
+                    if (item && item.parentElement.classList.contains('portrait-carousel')) {
+                        const video = item.querySelector('video');
+                        if (video) video.play();
+                    }
+                });
+
+                portraitCarouselContainer.addEventListener('mouseout', (event) => {
+                    const item = event.target.closest('.portfolio-item');
+                    if (item && item.parentElement.classList.contains('portrait-carousel')) {
+                        const video = item.querySelector('video');
+                        if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    }
+                });
+            }
+
+
+            // --- START: Carousel Auto-Loop Logic ---
+            const portraitCarousel = document.getElementById('portrait-carousel');
+            const carouselLeftBtn = document.getElementById('carousel-btn-left');
+            const carouselRightBtn = document.getElementById('carousel-btn-right');
+            let autoScrollInterval;
+
+            const stopAutoScroll = () => clearInterval(autoScrollInterval);
+
+            const startAutoScroll = () => {
+                stopAutoScroll();
+                autoScrollInterval = setInterval(() => {
+                    const scrollEndPoint = portraitCarousel.scrollWidth / 2;
+                    if (portraitCarousel.scrollLeft >= scrollEndPoint) {
+                        portraitCarousel.scrollLeft = 0;
+                    } else {
+                        portraitCarousel.scrollLeft += 1;
+                    }
+                }, 25);
+            };
+            
+            const getItemWidth = () => {
+                const firstItem = portraitCarousel.querySelector('.portfolio-item');
+                if (!firstItem) return 0;
+                const carouselStyle = window.getComputedStyle(portraitCarousel);
+                const gap = parseFloat(carouselStyle.gap) || 0;
+                return firstItem.offsetWidth + gap;
+            };
+
+            const scrollCarousel = (direction) => {
+                stopAutoScroll();
+                const scrollAmount = getItemWidth();
+                portraitCarousel.scrollBy({
+                    left: direction * scrollAmount,
+                    behavior: 'smooth'
+                });
+                setTimeout(startAutoScroll, 5000); 
+            };
+
+            const cloneCarouselItems = () => {
+                const items = Array.from(portraitCarousel.children);
+                items.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    portraitCarousel.appendChild(clone);
+                });
+            };
+
+            if (portraitCarousel && portraitCarousel.children.length > 0) {
+                cloneCarouselItems();
+                startAutoScroll();
+
+                carouselLeftBtn.addEventListener('click', () => scrollCarousel(-1));
+                carouselRightBtn.addEventListener('click', () => scrollCarousel(1));
+
+                portraitCarousel.addEventListener('mouseenter', stopAutoScroll);
+                portraitCarousel.addEventListener('mouseleave', startAutoScroll);
+                portraitCarousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
+                portraitCarousel.addEventListener('touchend', () => setTimeout(startAutoScroll, 3000), { passive: true });
+            }
+            // --- END: Carousel Auto-Loop Logic ---
         });
     </script>
 </body>
